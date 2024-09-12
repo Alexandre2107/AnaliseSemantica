@@ -537,15 +537,15 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scanner.l"
-#line 2 "scanner.l"
+#line 1 "lexico.l"
+#line 2 "lexico.l"
     #include <stdio.h>                  
     #include <stdlib.h>
     #include <stdbool.h>
     #include <string.h>
 
     #include "y.tab.h"
-    #include "hash_table.h"             
+    #include "utils.h"             
     extern HashTable* tabH;
     extern int yylex(void);
     void yyerror(char *);      
@@ -780,7 +780,7 @@ YY_DECL
 		}
 
 	{
-#line 33 "scanner.l"
+#line 33 "lexico.l"
 
 
 #line 787 "lex.yy.c"
@@ -852,152 +852,152 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 35 "scanner.l"
+#line 35 "lexico.l"
 { return T_PROGRAMA; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 36 "scanner.l"
+#line 36 "lexico.l"
 { variaveis_declaradas =true; return T_INICIO; } 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 37 "scanner.l"
+#line 37 "lexico.l"
 { first=2; return T_FIM; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 39 "scanner.l"
+#line 39 "lexico.l"
 { eh_inteiro = false; return T_LEIA; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 40 "scanner.l"
+#line 40 "lexico.l"
 {eh_inteiro = true; return T_ESCREVA; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 41 "scanner.l"
+#line 41 "lexico.l"
 {  return T_SE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 42 "scanner.l"
+#line 42 "lexico.l"
 {  return T_ENTAO; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 43 "scanner.l"
+#line 43 "lexico.l"
 {  return T_SENAO; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 44 "scanner.l"
+#line 44 "lexico.l"
 {  return T_FIMSE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 46 "scanner.l"
+#line 46 "lexico.l"
 {  return T_ENQTO; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 47 "scanner.l"
+#line 47 "lexico.l"
 {  return T_FACA; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 48 "scanner.l"
+#line 48 "lexico.l"
 {  return T_FIMENQTO; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 50 "scanner.l"
+#line 50 "lexico.l"
 {  return T_MAIS; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 51 "scanner.l"
+#line 51 "lexico.l"
 {  return T_MENOS; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 52 "scanner.l"
+#line 52 "lexico.l"
 {  return T_VEZES; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 53 "scanner.l"
+#line 53 "lexico.l"
 {  return T_DIV; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 55 "scanner.l"
+#line 55 "lexico.l"
 {  return T_MAIOR; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 56 "scanner.l"
+#line 56 "lexico.l"
 {  return T_MENOR; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 57 "scanner.l"
+#line 57 "lexico.l"
 {  return T_IGUAL; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 59 "scanner.l"
+#line 59 "lexico.l"
 {  return T_E; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 60 "scanner.l"
+#line 60 "lexico.l"
 {  return T_OU; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 61 "scanner.l"
+#line 61 "lexico.l"
 {  return T_NAO; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 63 "scanner.l"
+#line 63 "lexico.l"
 {  return T_ATRIB; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 64 "scanner.l"
+#line 64 "lexico.l"
 {  return T_ABRE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 65 "scanner.l"
+#line 65 "lexico.l"
 {  return T_FECHA; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 67 "scanner.l"
+#line 67 "lexico.l"
 {  return T_INTEIRO; }                                
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 68 "scanner.l"
+#line 68 "lexico.l"
 {  return T_LOGICO; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 69 "scanner.l"
+#line 69 "lexico.l"
 {  return T_V; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 70 "scanner.l"
+#line 70 "lexico.l"
 {  return T_F; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 72 "scanner.l"
+#line 72 "lexico.l"
 { yylval.name = strdup(yytext);
                                   
                                   if(!variaveis_declaradas)
@@ -1006,53 +1006,53 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 77 "scanner.l"
+#line 77 "lexico.l"
 {yylval.ival = atoi(yytext);
                                   return T_NUMERO; }
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 83 "scanner.l"
+#line 83 "lexico.l"
 {/*NADA*/}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 84 "scanner.l"
+#line 84 "lexico.l"
 {/*NADA*/}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 85 "scanner.l"
+#line 85 "lexico.l"
 BEGIN(comentario); 
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 86 "scanner.l"
+#line 86 "lexico.l"
 BEGIN(INITIAL);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 87 "scanner.l"
+#line 87 "lexico.l"
 {/*NADA*/}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 89 "scanner.l"
+#line 89 "lexico.l"
 { 
                                     yyerror("Nome de ID invalido");
                                 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 92 "scanner.l"
+#line 92 "lexico.l"
 { 
                                     yyerror("Simbolo não reconhecido");
                                 }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 96 "scanner.l"
+#line 96 "lexico.l"
 ECHO;
 	YY_BREAK
 #line 1059 "lex.yy.c"
@@ -2073,7 +2073,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 96 "scanner.l"
+#line 96 "lexico.l"
 
 
 void adiciona_na_tabs(){

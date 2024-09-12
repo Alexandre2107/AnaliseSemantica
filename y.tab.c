@@ -67,14 +67,14 @@
 
 
 /* First part of user prologue.  */
-#line 1 "decl.y"
+#line 1 "sintatico.y"
 
     #include <stdio.h>               
     #include <stdlib.h>
     #include <stdbool.h>
     #include <string.h>
     #include <math.h>
-    #include "hash_table.h"          
+    #include "utils.h"          
     extern HashTable* tabH;
 
     extern char* yytext;                
@@ -209,7 +209,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 35 "decl.y"
+#line 35 "sintatico.y"
 
     int ival;
     char* name;
@@ -687,9 +687,9 @@ static const yytype_int16 yyrline[] =
 {
        0,    54,    54,    54,    61,    64,    65,    69,    70,    74,
       75,    79,    80,    84,    85,    89,    90,    91,    92,    96,
-      97,   101,   118,   124,   126,   127,   124,   133,   135,   137,
-     132,   142,   174,   178,   190,   194,   198,   202,   206,   210,
-     214,   218,   222,   225,   231,   248,   253,   257,   261
+      97,   101,   118,   124,   126,   128,   124,   134,   136,   138,
+     133,   143,   175,   179,   191,   195,   199,   203,   207,   211,
+     215,   219,   223,   226,   232,   249,   254,   258,   262
 };
 #endif
 
@@ -1311,31 +1311,31 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* $@1: %empty  */
-#line 54 "decl.y"
+#line 54 "sintatico.y"
                {printf("INPP\n");}
 #line 1317 "y.tab.c"
     break;
 
   case 3: /* programa: cabecalho $@1 variaveis T_INICIO lista_comandos T_FIM  */
-#line 57 "decl.y"
+#line 57 "sintatico.y"
                {printf("FIMP \n");}
 #line 1323 "y.tab.c"
     break;
 
   case 11: /* lista_variaveis: T_IDENTIF lista_variaveis  */
-#line 79 "decl.y"
+#line 79 "sintatico.y"
                                {printf("AMEM\n");}
 #line 1329 "y.tab.c"
     break;
 
   case 12: /* lista_variaveis: T_IDENTIF  */
-#line 80 "decl.y"
+#line 80 "sintatico.y"
                                {printf("AMEM\n");}
 #line 1335 "y.tab.c"
     break;
 
   case 21: /* leitura: T_LEIA T_IDENTIF  */
-#line 101 "decl.y"
+#line 101 "sintatico.y"
                      {   
         int valor;
         char* name_alvo = strdup((yyvsp[0].name));
@@ -1354,7 +1354,7 @@ yyreduce:
     break;
 
   case 22: /* escrita: T_ESCREVA expressao  */
-#line 118 "decl.y"
+#line 118 "sintatico.y"
                                         { 
                                            printf("ESCR\n");
                                         }
@@ -1362,49 +1362,50 @@ yyreduce:
     break;
 
   case 23: /* $@2: %empty  */
-#line 124 "decl.y"
+#line 124 "sintatico.y"
              {printf("NADA %d\n" ,present_label);}
 #line 1368 "y.tab.c"
     break;
 
   case 24: /* $@3: %empty  */
-#line 126 "decl.y"
-            {present_label ++ ; ("DSVF %d \n" ,present_label);}
-#line 1374 "y.tab.c"
+#line 126 "sintatico.y"
+            {present_label ++ ; printf("DSVF %d \n", present_label);
+;}
+#line 1375 "y.tab.c"
     break;
 
   case 25: /* $@4: %empty  */
-#line 127 "decl.y"
-                    {present_label --; ("DSVS %d\n", present_label); present_label++; printf("NADA %d\n", present_label); present_label++;}
-#line 1380 "y.tab.c"
+#line 128 "sintatico.y"
+                    {present_label --; printf("DSVS %d\n", present_label); present_label++; printf("NADA %d\n", present_label); present_label++;}
+#line 1381 "y.tab.c"
     break;
 
   case 27: /* $@5: %empty  */
-#line 133 "decl.y"
+#line 134 "sintatico.y"
               {printf("DSVF %d \n", present_label ++);}
-#line 1386 "y.tab.c"
+#line 1387 "y.tab.c"
     break;
 
   case 28: /* $@6: %empty  */
-#line 135 "decl.y"
+#line 136 "sintatico.y"
                    {printf("DSVS %d\n", present_label ++); present_label--; present_label--; printf("NADA %d\n", present_label++);}
-#line 1392 "y.tab.c"
+#line 1393 "y.tab.c"
     break;
 
   case 29: /* $@7: %empty  */
-#line 137 "decl.y"
+#line 138 "sintatico.y"
                    {printf("NADA %d\n", present_label ++);}
-#line 1398 "y.tab.c"
+#line 1399 "y.tab.c"
     break;
 
   case 30: /* selecao: T_SE expressao $@5 T_ENTAO lista_comandos $@6 T_SENAO lista_comandos $@7 T_FIMSE  */
-#line 138 "decl.y"
+#line 139 "sintatico.y"
             { }
-#line 1404 "y.tab.c"
+#line 1405 "y.tab.c"
     break;
 
   case 31: /* atribuicao: T_IDENTIF T_ATRIB expressao  */
-#line 142 "decl.y"
+#line 143 "sintatico.y"
                                      {
         char* name_alvo = strdup((yyvsp[-2].name));
         Node* node_alvo = procura(tabH, name_alvo);
@@ -1433,20 +1434,20 @@ yyreduce:
         printf("ARZG %d\n", node_alvo->posic_pilha);
 
     }
-#line 1437 "y.tab.c"
+#line 1438 "y.tab.c"
     break;
 
   case 32: /* expressao: expressao T_VEZES expressao  */
-#line 174 "decl.y"
+#line 175 "sintatico.y"
                                       {
         (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival);
         printf("MULT %d", (yyval.ival));
     }
-#line 1446 "y.tab.c"
+#line 1447 "y.tab.c"
     break;
 
   case 33: /* expressao: expressao T_DIV expressao  */
-#line 178 "decl.y"
+#line 179 "sintatico.y"
                                   {
          if ((yyvsp[0].ival) == 0){ 
                                                     yyerror("divisão por zero");
@@ -1459,99 +1460,99 @@ yyreduce:
                                                     
                                                 }  
     }
-#line 1463 "y.tab.c"
+#line 1464 "y.tab.c"
     break;
 
   case 34: /* expressao: expressao T_MAIS expressao  */
-#line 190 "decl.y"
+#line 191 "sintatico.y"
                                     {
          (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival);
          printf("SOMA %d \n", (yyval.ival));
     }
-#line 1472 "y.tab.c"
+#line 1473 "y.tab.c"
     break;
 
   case 35: /* expressao: expressao T_MENOS expressao  */
-#line 194 "decl.y"
+#line 195 "sintatico.y"
                                         {
          (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival);
          printf("SUBT %d \n", (yyval.ival));
     }
-#line 1481 "y.tab.c"
+#line 1482 "y.tab.c"
     break;
 
   case 36: /* expressao: expressao T_MAIOR expressao  */
-#line 198 "decl.y"
+#line 199 "sintatico.y"
                                     {
          (yyval.ival) = ((yyvsp[-2].ival) > (yyvsp[0].ival)) ? 1 : 0;
          printf("CMMA \n");
     }
-#line 1490 "y.tab.c"
+#line 1491 "y.tab.c"
     break;
 
   case 37: /* expressao: expressao T_MENOR expressao  */
-#line 202 "decl.y"
+#line 203 "sintatico.y"
                                        {
          (yyval.ival) = ((yyvsp[-2].ival) < (yyvsp[0].ival)) ? 1 : 0;
          printf("CMME \n");
     }
-#line 1499 "y.tab.c"
+#line 1500 "y.tab.c"
     break;
 
   case 38: /* expressao: expressao T_IGUAL expressao  */
-#line 206 "decl.y"
+#line 207 "sintatico.y"
                                      {
          (yyval.ival) = ((yyvsp[-2].ival) == (yyvsp[0].ival)) ? 1 : 0;
          printf("CMIG \n");
     }
-#line 1508 "y.tab.c"
+#line 1509 "y.tab.c"
     break;
 
   case 39: /* expressao: expressao T_E expressao  */
-#line 210 "decl.y"
+#line 211 "sintatico.y"
                                 {
         (yyval.ival) = ((yyvsp[-2].ival) && (yyvsp[0].ival)) ? 1 : 0;
         printf("CONJ \n");
     }
-#line 1517 "y.tab.c"
+#line 1518 "y.tab.c"
     break;
 
   case 40: /* expressao: expressao T_OU expressao  */
-#line 214 "decl.y"
+#line 215 "sintatico.y"
                                    {
          (yyval.ival) = ((yyvsp[-2].ival) || (yyvsp[0].ival)) ? 1 : 0;
          printf("DISJ \n");
     }
-#line 1526 "y.tab.c"
+#line 1527 "y.tab.c"
     break;
 
   case 41: /* expressao: T_MENOS expressao  */
-#line 218 "decl.y"
+#line 219 "sintatico.y"
                                          {
          (yyval.ival) = -(yyvsp[0].ival);
          printf("SUBT %d \n", (yyval.ival));
     }
-#line 1535 "y.tab.c"
+#line 1536 "y.tab.c"
     break;
 
   case 42: /* expressao: termo  */
-#line 222 "decl.y"
+#line 223 "sintatico.y"
                   {
          (yyval.ival) = (yyvsp[0].ival);
     }
-#line 1543 "y.tab.c"
+#line 1544 "y.tab.c"
     break;
 
   case 43: /* expressao: T_ABRE expressao T_FECHA  */
-#line 225 "decl.y"
+#line 226 "sintatico.y"
                                  {
         (yyval.ival) = (yyvsp[-1].ival);
     }
-#line 1551 "y.tab.c"
+#line 1552 "y.tab.c"
     break;
 
   case 44: /* termo: T_IDENTIF  */
-#line 231 "decl.y"
+#line 232 "sintatico.y"
                 {
         Node* node = procura(tabH, yylval.name); 
                                                 if (node != NULL) {
@@ -1569,48 +1570,48 @@ yyreduce:
                                                    return;
                                                 }
     }
-#line 1573 "y.tab.c"
+#line 1574 "y.tab.c"
     break;
 
   case 45: /* termo: T_NUMERO  */
-#line 248 "decl.y"
+#line 249 "sintatico.y"
                {
         int num = (yyvsp[0].ival);
          (yyval.ival)=num;
          printf("CRCT %d \n", num);
     }
-#line 1583 "y.tab.c"
+#line 1584 "y.tab.c"
     break;
 
   case 46: /* termo: T_V  */
-#line 253 "decl.y"
+#line 254 "sintatico.y"
           {
          (yyval.ival)=true;
          printf("CRCT %d \n" , 1);
     }
-#line 1592 "y.tab.c"
+#line 1593 "y.tab.c"
     break;
 
   case 47: /* termo: T_F  */
-#line 257 "decl.y"
+#line 258 "sintatico.y"
           {
         (yyval.ival)=false;
         printf("CRCT %d \n" , 0);
     }
-#line 1601 "y.tab.c"
+#line 1602 "y.tab.c"
     break;
 
   case 48: /* termo: T_NAO termo  */
-#line 261 "decl.y"
+#line 262 "sintatico.y"
                   {
          (yyval.ival) = ((yyvsp[0].ival)) ? 0 : 1;
          printf("NEGA %d \n", 0);
     }
-#line 1610 "y.tab.c"
+#line 1611 "y.tab.c"
     break;
 
 
-#line 1614 "y.tab.c"
+#line 1615 "y.tab.c"
 
       default: break;
     }
@@ -1803,7 +1804,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 267 "decl.y"
+#line 268 "sintatico.y"
 
 
 void yyerror(char *s){
@@ -1815,11 +1816,10 @@ void yyerror(char *s){
 void exibe_tabs(){
     tabH = create_hash_table(100);
     yyparse();
-    print_hash_table(tabH);
     free_hash_table(tabH);
 }
 int main(void){
-    FILE *f_in = fopen("/home/joao/comp_AnalSemantica/teste", "r");
+    FILE *f_in = fopen("/home/alexandre_rodrigues/semantico/teste.simples", "r");
     yyin = f_in;
     exibe_tabs();
     fclose(f_in);

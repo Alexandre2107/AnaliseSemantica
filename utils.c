@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "hash_table.h"
+#include "utils.h"
 
 HashTable* tabH;
 #define PRIME 31
@@ -33,7 +33,7 @@ void insert(HashTable* tabH, char* name, int value) {
         node = node->next;
     }
     Node* new_node = (Node*) malloc(sizeof(Node));
-    new_node->name = name;
+    new_node->name = strdup(name);
     new_node->int_value = value;
     new_node->type = MAIN;
     new_node->next = tabH->table[index];
@@ -52,7 +52,7 @@ void insert_int(HashTable* tabH, char* name, int value, int posic_pilha) {
         node = node->next;
     }
     Node* new_node = (Node*) malloc(sizeof(Node));
-    new_node->name = name;
+    new_node->name = strdup(name);
     new_node->int_value = value;
     new_node->type = INT_TYPE;
     new_node->posic_pilha = posic_pilha;
@@ -72,7 +72,7 @@ void insert_bool(HashTable* tabH, char* name, int value, int posic_pilha) {
         node = node->next;
     }
     Node* new_node = (Node*) malloc(sizeof(Node));
-    new_node->name = name;
+    new_node->name = strdup(name);
     new_node->bool_value = value;
     new_node->type = BOOL_TYPE;
     new_node->posic_pilha = posic_pilha;
@@ -151,29 +151,6 @@ Node* procura(HashTable* tabH, char* name) {
         node = node->next;
     }
     return NULL;
-}
-
-void print_hash_table(HashTable* tabH) {
-    printf("\nTabela dos Símbolos\n");
-    printf("+------------+-------------------+------------+------------+\n");
-    printf("|    Nome    | Posição na Pilha  |    Tipo    |    Valor   |\n");
-    printf("+------------+-------------------+------------+------------+\n");
-
-    for (int i = 0; i < tabH->size; i++) {
-        Node* node = tabH->table[i];
-        while (node != NULL) {
-            printf("| %-10s | %-18d |", node->name, node->posic_pilha);
-            if (node->type == INT_TYPE) {
-                printf(" %-10s | %-10d |\n", "inteiro", node->int_value);
-            } else if (node->type == BOOL_TYPE) {
-                printf(" %-10s | %-10s |\n", "logico", node->bool_value ? "true" : "false");
-            } else {
-                printf(" %-10s | %-10s |\n", "-", "-");
-            }
-            printf("+------------+-------------------+------------+------------+\n");
-            node = node->next;
-        }
-    }
 }
 
 void free_hash_table(HashTable* tabH) {

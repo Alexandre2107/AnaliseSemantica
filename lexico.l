@@ -5,7 +5,7 @@
     #include <string.h>
 
     #include "y.tab.h"
-    #include "hash_table.h"             
+    #include "utils.h"             
     extern HashTable* tabH;
     extern int yylex(void);
     void yyerror(char *);      

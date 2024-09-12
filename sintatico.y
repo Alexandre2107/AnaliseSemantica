@@ -4,7 +4,7 @@
     #include <stdbool.h>
     #include <string.h>
     #include <math.h>
-    #include "hash_table.h"          
+    #include "utils.h"          
     extern HashTable* tabH;
 
     extern char* yytext;                
@@ -123,8 +123,9 @@ escrita:
 repeticao:
     T_ENQTO  {printf("NADA %d\n" ,present_label);}
      expressao 
-     T_FACA {present_label ++ ; ("DSVF %d \n" ,present_label);}
-     lista_comandos {present_label --; ("DSVS %d\n", present_label); present_label++; printf("NADA %d\n", present_label); present_label++;}
+     T_FACA {present_label ++ ; printf("DSVF %d \n", present_label);
+;}
+     lista_comandos {present_label --; printf("DSVS %d\n", present_label); present_label++; printf("NADA %d\n", present_label); present_label++;}
      T_FIMENQTO
     ;
 
@@ -275,11 +276,10 @@ void yyerror(char *s){
 void exibe_tabs(){
     tabH = create_hash_table(100);
     yyparse();
-    print_hash_table(tabH);
     free_hash_table(tabH);
 }
 int main(void){
-    FILE *f_in = fopen("/home/joao/comp_AnalSemantica/teste", "r");
+    FILE *f_in = fopen("/home/alexandre_rodrigues/semantico/teste.simples", "r");
     yyin = f_in;
     exibe_tabs();
     fclose(f_in);
