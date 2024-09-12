@@ -1,30 +1,30 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -g
 
-all: exec
+all: compilado
 
-exec: lex.yy.o y.tab.o tabelaSimbolos.o
-	$(CC) $(CFLAGS) -o exec lex.yy.o y.tab.o tabelaSimbolos.o
+compilado: lex.yy.o y.tab.o hash_table.o 
+	$(CC) $(CFLAGS) -o compilado lex.yy.o y.tab.o hash_table.o 
 	make run
 
-lex.yy.o: lex.yy.c y.tab.h tabelaSimbolos.h
+lex.yy.o: lex.yy.c y.tab.h hash_table.h
 	$(CC) $(CFLAGS) -c lex.yy.c
 
-y.tab.o: y.tab.c tabelaSimbolos.h
+y.tab.o: y.tab.c hash_table.h
 	$(CC) $(CFLAGS) -c y.tab.c
 
-tabelaSimbolos.o: tabelaSimbolos.c tabelaSimbolos.h
-	$(CC) $(CFLAGS) -c tabelaSimbolos.c
+hash_table.o: hash_table.c hash_table.h
+	$(CC) $(CFLAGS) -c hash_table.c
 
-lex.yy.c: analisador.l
-	flex analisador.l
+lex.yy.c: scanner.l
+	flex scanner.l
 
 y.tab.c y.tab.h: decl.y
 	$(YACC) -d decl.y
 
 clean:
-	rm -f exec *.o lex.yy.c y.tab.c y.tab.h
+	rm -f compilado *.o lex.yy.c y.tab.c y.tab.h
 
 run:
 	clear
-	./exec
+	./compilado
